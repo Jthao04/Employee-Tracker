@@ -1,0 +1,107 @@
+\c employee_db;
+
+-- Clear existing data and reset IDs
+TRUNCATE TABLE employee, role, department RESTART IDENTITY CASCADE;
+
+-- Insert departments (Avoid duplicate errors)
+INSERT INTO department (name)
+VALUES 
+    ('Human Resources'),
+    ('Marketing'),
+    ('Sales'),
+    ('Engineering'),
+    ('Finance'),
+    ('Legal'),
+    ('Customer Service'),
+    ('Research & Development'),
+    ('IT'),
+    ('Product Management'),
+    ('Quality Management'),
+    ('Training'),
+    ('Purchasing'),
+    ('Accounting'),
+    ('Business Development'),
+    ('Communications'),
+    ('Services'),
+    ('Support')
+ON CONFLICT (name) DO NOTHING;
+
+-- Insert roles (Shortened long names to fit within VARCHAR(30))
+INSERT INTO role (title, salary, department_id)
+VALUES 
+    ('HR Manager', 80000, 1),
+    ('HR Assistant', 50000, 1),
+    ('Marketing Manager', 110000, 2),
+    ('Marketing Assistant', 60000, 2),
+    ('Sales Manager', 120000, 3),
+    ('Sales Assistant', 40000, 3),
+    ('Electrical Engineer', 120000, 4),
+    ('Electrical Technician', 55000, 4),
+    ('Finance Manager', 87000, 5),
+    ('Finance Assistant', 50000, 5),
+    ('Legal Manager', 115000, 6),
+    ('Legal Assistant', 65000, 6),
+    ('Customer Service Manager', 90000, 7),
+    ('Customer Service Assistant', 55000, 7),
+    ('R&D Manager', 130000, 8),
+    ('R&D Assistant', 60000, 8),
+    ('Senior Frontend Dev', 130000, 9),
+    ('Junior Frontend Dev', 80000, 9),
+    ('Product Manager', 120000, 10),
+    ('Product Assistant', 75000, 10),
+    ('Quality Manager', 110000, 11),
+    ('Quality Assistant', 60000, 11),
+    ('Training Manager', 80000, 12),
+    ('Training Assistant', 50000, 12),
+    ('Purchasing Manager', 90000, 13),
+    ('Purchasing Assistant', 45000, 13),
+    ('Accountant', 65000, 14),
+    ('Accounting Assistant', 40000, 14),
+    ('Biz Dev Manager', 110000, 15),
+    ('Biz Dev Assistant', 58000, 15),
+    ('Comms Manager', 105000, 16),
+    ('Comms Assistant', 47000, 16),
+    ('Services Manager', 95000, 17),
+    ('Services Assistant', 52000, 17),
+    ('Support Manager', 70000, 18),
+    ('Support Assistant', 40000, 18);
+
+-- Insert employees (Ensure valid role_id references)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES 
+    ('John', 'Smith', 1, NULL),
+    ('Ronald', 'Ball', 2, 1),
+    ('Carrie', 'Nelson', 3, NULL),
+    ('Jill', 'Williams', 4, 3),
+    ('Samantha', 'Jones', 5, NULL),
+    ('Tim', 'Horton', 6, 5),
+    ('Jane', 'Doe', 7, NULL),
+    ('Jim', 'Brown', 8, 7),
+    ('Sarah', 'Davis', 9, NULL),
+    ('Chris', 'Miller', 10, 9),
+    ('David', 'Wilson', 11, NULL),
+    ('Laura', 'Moore', 12, 11),
+    ('Daniel', 'Taylor', 13, NULL),
+    ('Emily', 'Anderson', 14, 13),
+    ('Matthew', 'Thomas', 15, NULL),
+    ('Olivia', 'Jackson', 16, 15),
+    ('James', 'White', 17, NULL),
+    ('Ava', 'Harris', 18, 17),
+    ('Jack', 'Black', 19, NULL),
+    ('Oscar', 'Malone', 20, 19),
+    ('Abigail', 'Moe', 21, NULL),
+    ('Oliver', 'Johnson', 22, 21),
+    ('Matthew', 'King', 23, NULL),
+    ('Micah', 'Lee', 24, 23),
+    ('Paul', 'George', 25, NULL),
+    ('Maya', 'Moore', 26, 25),
+    ('Norman', 'Stein', 27, NULL),
+    ('Patricia', 'White', 28, 27),
+    ('Percy', 'Quinn', 29, NULL),
+    ('Michael', 'Jackson', 30, 29),
+    ('Isaiah', 'James', 31, NULL),
+    ('Terry', 'Scotts', 32, 31),
+    ('Peter', 'Jar', 33, NULL),
+    ('Jerome', 'Simmons', 34, 33),
+    ('Donald', 'Mills', 35, NULL),
+    ('George', 'Nixon', 36, 35);
