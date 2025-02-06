@@ -14,8 +14,8 @@
 
 # [Demonstration Video](https://drive.google.com/file/d/1GQT_bIYInucp90cMiOVAzDNGSE-diFEt/view?usp=sharing)
 
-## Screenshot
-![Fullscreen Image](assets/Screenshot.png)
+# Screenshot
+![Screenshot](./assets/Screenshot.png)
 
 ## Description
 
